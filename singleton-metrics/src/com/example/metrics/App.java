@@ -11,7 +11,9 @@ import java.util.Map;
 public class App {
 
     public static void main(String[] args) throws Exception {
-        String propsPath = "metrics.properties";
+        String propsPath = new java.io.File("metrics.properties").exists()
+                ? "metrics.properties"
+                : "singleton-metrics/src/metrics.properties";
 
         MetricsLoader loader = new MetricsLoader();
         MetricsRegistry loaded = loader.loadFromFile(propsPath);
